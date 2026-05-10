@@ -361,6 +361,25 @@ st.markdown("""
 # PATIENT CONTEXT BAR (PHASE 3.1)
 # ============================================================================
 
+st.markdown("""
+    <style>
+    /* Darker gray for metrics visibility */
+    [data-testid="stMetricLabel"] {
+        color: #4F4F4F !important;
+    }
+    [data-testid="stMetricValue"] {
+        color: #31333F !important;
+    }
+    /* Optional: Add a subtle border to the metrics to make them pop */
+    [data-testid="stMetric"] {
+        background-color: #ffffff;
+        border: 1px solid #e6e9ef;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 if vitals is not None:
     col1, col2, col3, col4 = st.columns(4)
     
