@@ -179,53 +179,87 @@ class WeightedScorer(RiskModel):
     def get_model_name(self) -> str:
         return "Weighted Clinical Score"
 
+# Add to top of models.py
+import pickle
+import os
+
+# ... (keep all other code the same) ...
+
+# REPLACE the MLPredictor class with this:
 
 class MLPredictor(RiskModel):
     """
     Model 2: Machine Learning Logistic Regression
-    Trained coefficients derived from MIMIC-III ICU patient outcomes.
+    Loads pre-trained model from disk (trained on synthetic MIMIC-III-based data).
     Phase 1.2: Real ML Integration
     """
     
-    def __init__(self):
-        # Simulated training from MIMIC-III Clinical Database
-        # These coefficients represent learned weights from 50,000+ ICU admissions
-        # Feature order: [hr, temp, spo2, wbc, creatinine]
-        self.coefficients = np.array([0.045, 2.8, -1.2, 0.38, 12.5])
-        self.intercept = -15.0
+    def __init__(self, model_path='icu_risk_model.pkl', scaler_path='icu_scaler.pkl', 
+                 metrics_path='training_metrics.pkl'):
+        """
+        Load trained model, scaler, and metrics from disk.
         
-        # Normalization parameters (fitted on training data)
-        self.feature_means = np.array([85.0, 37.0, 96.0, 11.0, 1.1])
-        self.feature_stds = np.array([18.0, 1.2, 4.0, 4.5, 0.9])
+        Args:
+            model_path: Path to trained model pickle file
+            scaler_path: Path to fitted scaler pickle file
+            metrics_path: Path to training metrics pickle file
+        """
         
-        # Model performance metrics from validation set
-        self.accuracy = 0.873
-        self.precision = 0.891
-        self.recall = 0.845
-        self.auc_roc = 0.912
+        # Check if model files exist
+        if not os.path.exists(model_path):
+            raise FileNotFoundError(
+                f"❌ Trained model not found at: {model_path}\n"
+                "Please run 'python train_model.py' first to train the model."
+            )
+        
+        # Load trained model
+        with open(model_path, 'rb') as f:
+            self.model = pickle.load(f)
+        
+        # Load fitted scaler
+        with open(scaler_path, 'rb') as f:
+            self.scaler = pickle.load(f)
+        
+        # Load training metrics
+        with open(metrics_path, 'rb') as f:
+            self.metrics = pickle.load(f)
+        
+        # Extract metrics for display
+        self.accuracy = self.metrics['test_accuracy']
+        self.precision = self.metrics['test_precision']
+        self.recall = self.metrics['test_recall']
+        self.auc_roc = self.metrics['test_auc_roc']
+        
+        # Feature information
+        self.feature_names = self.metrics['feature_names']
+        self.coefficients = np.array(self.metrics['coefficients'])
+        self.intercept = self.metrics['intercept']
+        
+        print(f"✓ Loaded trained model (Test AUC-ROC: {self.auc_roc:.4f})")
     
     def predict(self, hr: float, temp: float, spo2: float, 
                 wbc: float, creatinine: float) -> RiskAssessment:
         
         # Prepare input features
-        features = np.array([hr, temp, spo2, wbc, creatinine])
+        features = np.array([[hr, temp, spo2, wbc, creatinine]])
         
-        # Standardize features (z-score normalization)
-        features_standardized = (features - self.feature_means) / self.feature_stds
+        # Standardize using fitted scaler
+        features_standardized = self.scaler.transform(features)
         
-        # Compute logistic regression
-        logit = np.dot(features_standardized, self.coefficients) + self.intercept
-        probability = 1 / (1 + np.exp(-logit))
-        
+        # Get prediction probability
+        probability = self.model.predict_proba(features_standardized)[0][1]
         risk_percentage = probability * 100
         
+        # Get binary prediction
+        prediction = self.model.predict(features_standardized)[0]
+        
         # Calculate feature contributions (for explainability)
-        feature_names = ['Heart Rate', 'Temperature', 'SpO2', 'WBC', 'Creatinine']
+        feature_names_list = ['Heart Rate', 'Temperature', 'SpO2', 'WBC', 'Creatinine']
         contributions = {}
         
-        for i, name in enumerate(feature_names):
+        for i, name in enumerate(feature_names_list):
             # Contribution = coefficient * standardized_value
-            contrib_value = abs(self.coefficients[i] * features_standardized[i])
+            contrib_value = abs(self.coefficients[i] * features_standardized[0][i])
             contributions[name] = int(contrib_value * 10)  # Scale for display
         
         # Risk categorization
@@ -241,9 +275,9 @@ class MLPredictor(RiskModel):
         
         recommendations = [
             f"📊 ML Model Prediction: {risk_percentage:.1f}% risk of adverse outcome",
-            f"✓ Model Accuracy: {self.accuracy*100:.1f}% (validated on 10,000+ patients)",
+            f"✓ Model Test Accuracy: {self.accuracy*100:.1f}% (validated on {self.metrics['n_test_samples']} patients)",
             f"🎯 Prediction Confidence: {self._calculate_confidence(probability):.1f}%",
-            f"📈 AUC-ROC Score: {self.auc_roc:.3f}",
+            f"📈 Model AUC-ROC Score: {self.auc_roc:.3f}",
             "",
             "🔍 Top Contributing Factors:",
         ]
@@ -271,22 +305,22 @@ class MLPredictor(RiskModel):
         return min(confidence, 99.0)
     
     def get_model_name(self) -> str:
-        return "ML Logistic Regression (MIMIC-III)"
+        return "ML Logistic Regression (Trained Model)"
     
     def get_training_info(self) -> Dict:
         """Return model training metadata"""
         return {
-            "dataset": "MIMIC-III Clinical Database",
-            "sample_size": "50,000+ ICU admissions",
+            "dataset": "Synthetic ICU data (MIMIC-III-based)",
+            "training_samples": self.metrics['n_train_samples'],
+            "test_samples": self.metrics['n_test_samples'],
             "accuracy": f"{self.accuracy*100:.1f}%",
             "precision": f"{self.precision*100:.1f}%",
             "recall": f"{self.recall*100:.1f}%",
             "auc_roc": f"{self.auc_roc:.3f}",
-            "features": ["Heart Rate", "Temperature", "SpO2", "WBC", "Creatinine"],
-            "target": "30-day adverse outcome (mortality/readmission)"
+            "features": self.feature_names,
+            "target": "30-day adverse outcome (mortality/readmission)",
+            "training_date": self.metrics['training_date']
         }
-
-
 class ThresholdBinary(RiskModel):
     """
     Model 3: Strict Safety Threshold System
