@@ -1,0 +1,112 @@
+PS C:\Users\user\Desktop\Data_analytics_project> python train_model.py
+
+======================================================================
+ICU RISK PREDICTION MODEL - TRAINING PIPELINE
+Cairo University - Biomedical Data Analytics Project
+======================================================================
+
+STEP 1: DATA GENERATION
+----------------------------------------------------------------------
+Generating 50000 synthetic ICU patient records...
+Based on MIMIC-III published vital sign distributions
+✓ Generated 50000 patient records
+✓ Adverse outcome rate: 13.95%
+✓ Feature correlations with outcome established
+✓ Training data saved: training_data.csv
+
+======================================================================
+STEP 2: MODEL TRAINING
+----------------------------------------------------------------------
+
+======================================================================
+TRAINING ICU RISK PREDICTION MODEL
+======================================================================
+
+📊 Dataset Summary:
+   Total patients: 50000
+   Features: hr, temp, spo2, wbc, creatinine
+   Target: 30-day adverse outcome (mortality/readmission)
+   Positive cases: 6976 (13.95%)
+   Negative cases: 43024 (86.05%)
+
+📈 Data Split:
+   Training set: 40000 patients
+   Test set: 10000 patients
+
+⚙️ Feature Standardization:
+   Feature means: [85.06173745 37.14966684 94.71052207 10.46254759  1.4246277 ]
+   Feature stds: [25.3087369   1.09564403  4.87798982  4.67455068  1.02405503]
+
+🤖 Training Logistic Regression Model...
+✓ Model training complete
+✓ Iterations: 7
+✓ Coefficients learned for 5 features
+
+📊 Learned Feature Coefficients:
+   hr          : +0.0297
+   temp        : +0.0286
+   spo2        : -0.3499
+   wbc         : +0.0686
+   creatinine  : +0.2682
+   Intercept   : -0.1060
+
+📈 Model Evaluation:
+
+   Training Set Performance:
+      Accuracy:  0.7338
+      Precision: 0.2564
+      Recall:    0.4779
+      AUC-ROC:   0.6576
+
+   Test Set Performance:
+      Accuracy:  0.7318 ⭐
+      Precision: 0.2530 ⭐
+      Recall:    0.4724 ⭐
+      AUC-ROC:   0.6499 ⭐
+
+   Confusion Matrix (Test Set):
+      True Negatives:   6659   False Positives:  1946
+      False Negatives:   736   True Positives:    659
+
+   Detailed Classification Report:
+                 precision    recall  f1-score   support
+
+       Survived       0.90      0.77      0.83      8605
+Adverse Outcome       0.25      0.47      0.33      1395
+
+       accuracy                           0.73     10000
+      macro avg       0.58      0.62      0.58     10000
+   weighted avg       0.81      0.73      0.76     10000
+
+
+======================================================================
+STEP 3: SAVE MODEL ARTIFACTS
+----------------------------------------------------------------------
+
+💾 Saving Model Artifacts...
+   ✓ Model saved: ./icu_risk_model.pkl
+   ✓ Scaler saved: ./icu_scaler.pkl
+   ✓ Metrics saved: ./training_metrics.pkl
+   ✓ Training report saved: ./training_report.txt
+
+✅ All artifacts saved successfully!
+
+======================================================================
+TRAINING PIPELINE COMPLETE
+======================================================================
+
+✅ Model training successful!
+✅ Test Accuracy: 73.18%
+✅ Test AUC-ROC: 0.6499
+
+Generated Files:
+   1. icu_risk_model.pkl      - Trained model
+   2. icu_scaler.pkl          - Feature scaler
+   3. training_metrics.pkl    - Performance metrics
+   4. training_report.txt     - Human-readable report
+   5. training_data.csv       - Training dataset
+
+📝 Next Steps:
+   1. Review training_report.txt for detailed metrics
+   2. Update models.py to load icu_risk_model.pkl
+   3. Run the Streamlit app: streamlit run app.py

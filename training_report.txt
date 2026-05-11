@@ -1,0 +1,58 @@
+======================================================================
+ICU RISK PREDICTION MODEL - TRAINING REPORT
+======================================================================
+
+DATASET INFORMATION
+----------------------------------------------------------------------
+Data Source: Synthetic ICU data based on MIMIC-III statistics
+Training Samples: 40000
+Test Samples: 10000
+Features: hr, temp, spo2, wbc, creatinine
+Target: 30-day adverse outcome (mortality/readmission)
+
+MODEL ARCHITECTURE
+----------------------------------------------------------------------
+Algorithm: Logistic Regression
+Regularization: L2 (Ridge)
+Class Weighting: Balanced
+Intercept: -0.1060
+
+FEATURE COEFFICIENTS
+----------------------------------------------------------------------
+hr             : +0.0297
+temp           : +0.0286
+spo2           : -0.3499
+wbc            : +0.0686
+creatinine     : +0.2682
+
+PERFORMANCE METRICS
+----------------------------------------------------------------------
+Training Set:
+  Accuracy:  0.7338
+  Precision: 0.2564
+  Recall:    0.4779
+  AUC-ROC:   0.6576
+
+Test Set:
+  Accuracy:  0.7318
+  Precision: 0.2530
+  Recall:    0.4724
+  AUC-ROC:   0.6499
+
+TRAINING METADATA
+----------------------------------------------------------------------
+Training Date: 2026-05-11 11:38:24
+Model Version: 1.0
+Framework: scikit-learn
+
+CLINICAL INTERPRETATION
+----------------------------------------------------------------------
+This model predicts 30-day adverse outcomes (mortality or readmission)
+for ICU patients based on five vital sign measurements. The model was
+trained on synthetic data mimicking MIMIC-III vital sign distributions
+and clinical outcome correlations from published literature.
+
+For production deployment, retrain on actual MIMIC-III data after
+obtaining PhysioNet credentials at: https://mimic.mit.edu/
+
+======================================================================
