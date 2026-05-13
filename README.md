@@ -414,18 +414,6 @@ Creatinine:     0.1-15.0 mg/dL
 
 ---
 
-## 🤝 Contributing
-
-This is an academic project for Cairo University. For suggestions or improvements:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/improvement`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature/improvement`)
-5. Open a Pull Request
-
----
-
 ## 📄 License
 
 This project is developed for educational purposes as part of Cairo University's Biomedical Data Analytics course.
@@ -443,28 +431,13 @@ This project is developed for educational purposes as part of Cairo University's
 - **Modified Early Warning Score (MEWS)**: Royal College of Physicians
 - **SIRS Criteria**: American College of Chest Physicians
 
-### Course & Institution
-
-- **Course**: Biomedical Data Analytics
-- **Institution**: Cairo University, Faculty of Engineering
-- **Project Grade**: 15/15 (Expected)
-
 ### Development
 
 - **Architecture**: SOLID principles and modular design
 - **Validation**: Clinical thresholds based on peer-reviewed literature
 - **UI/UX**: Medical-grade interface design standards
 
----
-
-## 📞 Contact
-
-**Project Team**: [Your Name/Team Name]  
-**University**: Cairo University, Faculty of Engineering  
-**Course**: Biomedical Data Analytics  
-**Year**: 2024
-
-**Project Repository**: https://github.com/yourusername/icu-risk-analytics
+**Project Repository**: https://github.com/Mehrati3/Data_analytics_project
 
 ---
 
@@ -523,33 +496,9 @@ This project is developed for educational purposes as part of Cairo University's
 - [x] Medically relevant (ICU deterioration detection)
 - [x] Practically useful (clinical decision support)
 - [x] Professional quality (production-ready code)
-
-**Grade 15 Excellence:**
-
-- [x] Multi-model comparison system
-- [x] Professional medical interface
-- [x] Input validation and safety
-- [x] Clinical recommendations
-- [x] Export and reporting features
-- [x] Comprehensive documentation
-- [x] Model explainability
-- [x] Batch processing capability
-- [x] Real training pipeline
-- [x] Proper dataset citation
-
 ---
-
-**Built with ❤️ for Cairo University Biomedical Data Analytics Course**
 
 *Saving lives through data-driven clinical decision support*
-
----
-
-## 🔖 Version History
-
-- **v1.2** (Current) - Complete Grade 15 implementation with real ML training
-- **v1.1** - Added multi-model ensemble and batch processing
-- **v1.0** - Initial release with weighted scoring system
 
 ---
 
@@ -566,4 +515,4 @@ This project is developed for educational purposes as part of Cairo University's
 
 ---
 
-*Last Updated: May 2024*
+*Last Updated: May 2026*
