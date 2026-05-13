@@ -1,12 +1,12 @@
-# 🏥 ICU Risk Analytics Platform
+# ICU Risk Analytics Platform
 
 **Real-time Clinical Decision Support System for ICU Patient Risk Assessment**
 
-A comprehensive medical data analytics application developed as the final project for Cairo University's Biomedical Data Analytics course. This system uses multiple predictive models to assess ICU patient risk and provide actionable clinical recommendations.
+A comprehensive medical data analytics application developed as the final project for Biomedical Data Analytics course. This system uses multiple predictive models to assess ICU patient risk and provide actionable clinical recommendations.
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
@@ -24,9 +24,9 @@ A comprehensive medical data analytics application developed as the final projec
 
 ---
 
-## 🎯 Overview
+## Overview
 
-The ICU Risk Analytics Platform is a **fully functional web application** (not just a notebook) designed for real-world clinical use. It addresses the critical healthcare problem of **early detection of patient deterioration** in intensive care units.
+The ICU Risk Analytics Platform is a **fully functional web application** designed for real-world clinical use. It addresses the critical healthcare problem of **early detection of patient deterioration** in intensive care units.
 
 ### Key Capabilities
 
@@ -37,18 +37,18 @@ The ICU Risk Analytics Platform is a **fully functional web application** (not j
 - **Professional Interface**: Medical-grade UI with visual risk gauges and detailed reports
 - **Export Functionality**: Generate downloadable clinical reports and batch results
 
-### Project Requirements Met
+### Project Requirements Met (based on Project Statement)
 
-✅ **Data Collection**: CSV upload and manual entry of patient vital signs  
-✅ **Data Analysis**: Three distinct models (Weighted Score, ML Logistic Regression, Threshold Binary)  
-✅ **Prediction Output**: Risk percentage, clinical status, and specific recommendations  
-✅ **Trained ML Model**: Logistic Regression trained on 50,000+ synthetic ICU patients  
-✅ **User Interface**: Professional Streamlit web application  
-✅ **Practical Utility**: Designed for real hospital/clinic deployment  
+- **Data Collection**: CSV upload and manual entry of patient vital signs  
+- **Data Analysis**: Three distinct models (Weighted Score, ML Logistic Regression, Threshold Binary)  
+- **Prediction Output**: Risk percentage, clinical status, and specific recommendations  
+- **Trained ML Model**: Logistic Regression trained on 50,000+ synthetic ICU patients  
+- **User Interface**: Professional Streamlit web application  
+- **Practical Utility**: Designed for real hospital/clinic deployment  
 
 ---
 
-## ✨ Features
+## Features
 
 ### 1. **Multi-Model Risk Prediction**
 
@@ -87,7 +87,7 @@ The ICU Risk Analytics Platform is a **fully functional web application** (not j
 
 ---
 
-## 🏗️ Project Architecture
+##  Project Architecture
 
 The project follows **SOLID principles** with a modular, professional system design:
 
@@ -128,7 +128,7 @@ icu-risk-analytics/
 
 ---
 
-## 💻 Installation
+## Installation
 
 ### Prerequisites
 
@@ -180,7 +180,7 @@ The application will open in your default web browser at `http://localhost:8501`
 
 ---
 
-## 🚀 Usage
+## Usage
 
 ### Option 1: CSV Upload (Batch Processing)
 
@@ -231,7 +231,7 @@ The application will open in your default web browser at `http://localhost:8501`
 
 ---
 
-## 🔬 Model Training
+## Model Training
 
 ### Training Pipeline
 
@@ -274,7 +274,7 @@ The synthetic data mimics **MIMIC-III Clinical Database** distributions:
 
 ---
 
-## 📊 Dataset Information
+## Dataset Information
 
 ### Primary Reference
 
@@ -316,7 +316,7 @@ This project uses **synthetic data based on MIMIC-III statistics** for the follo
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 icu-risk-analytics/
@@ -341,7 +341,7 @@ icu-risk-analytics/
 
 ---
 
-## 🔧 Technical Details
+## Technical Details
 
 ### Technologies Used
 
@@ -394,35 +394,7 @@ Creatinine:     0.1-15.0 mg/dL
 
 ---
 
-## 📸 Screenshots
-
-### Main Dashboard
-![Dashboard](docs/screenshots/dashboard.png)
-*Professional medical interface with patient context and risk gauge*
-
-### Weighted Clinical Score
-![Weighted Score](docs/screenshots/weighted_score.png)
-*Point-by-point calculation breakdown with clinical recommendations*
-
-### ML Prediction
-![ML Model](docs/screenshots/ml_prediction.png)
-*Feature contribution analysis and training metrics*
-
-### Model Comparison
-![Comparison](docs/screenshots/comparison.png)
-*Side-by-side comparison with consensus risk assessment*
-
----
-
-## 📄 License
-
-This project is developed for educational purposes as part of Cairo University's Biomedical Data Analytics course.
-
-**Important Disclaimer**: This application is designed for educational and research purposes only. It should **NOT** be used as the sole basis for clinical decision-making. All predictions must be validated by qualified healthcare professionals.
-
----
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 ### Dataset & References
 
@@ -441,29 +413,7 @@ This project is developed for educational purposes as part of Cairo University's
 
 ---
 
-## 🗺️ Roadmap
-
-### Future Enhancements
-
-- [ ] **Real MIMIC-III Integration**: Retrain on actual credentialed data
-- [ ] **Temporal Analysis**: Track patient vital sign trends over time
-- [ ] **Additional Features**: Lab values (troponin, lactate, pH)
-- [ ] **SHAP Explainability**: Advanced model interpretation
-- [ ] **Mobile App**: React Native implementation
-- [ ] **API Endpoint**: RESTful API for EHR integration
-- [ ] **Multi-Language**: Arabic language support
-- [ ] **Real-time Monitoring**: Live vital sign stream integration
-
-### Known Limitations
-
-1. **Synthetic Training Data**: Should be replaced with actual MIMIC-III
-2. **Single Time Point**: No temporal/trend analysis yet
-3. **Limited Features**: Only 5 vital signs (could expand to 15+)
-4. **No EHR Integration**: Standalone application currently
-
----
-
-## 📚 Additional Resources
+## Additional Resources
 
 ### Clinical Guidelines
 - [National Early Warning Score (NEWS)](https://www.rcplondon.ac.uk/projects/outputs/national-early-warning-score-news-2)
@@ -479,26 +429,6 @@ This project is developed for educational purposes as part of Cairo University's
 - [Streamlit Documentation](https://docs.streamlit.io/)
 - [scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html)
 - [pandas Documentation](https://pandas.pydata.org/docs/)
-
----
-
-## ✅ Project Checklist
-
-**Cairo University Requirements:**
-
-- [x] Collect data from user (CSV upload + manual entry)
-- [x] Analyze data using ML and analytics techniques
-- [x] Make meaningful medical prediction (risk assessment)
-- [x] Fully functional application (not a notebook)
-- [x] Real user interface (Streamlit web app)
-- [x] Trained ML model (Logistic Regression)
-- [x] Publicly available dataset (MIMIC-III-based)
-- [x] Medically relevant (ICU deterioration detection)
-- [x] Practically useful (clinical decision support)
-- [x] Professional quality (production-ready code)
----
-
-*Saving lives through data-driven clinical decision support*
 
 ---
 
