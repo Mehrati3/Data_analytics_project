@@ -1,6 +1,6 @@
 Manual Entry - Patient Example:
-- **Heart Rate**: 140 beats per minute - that's tachycardia, significantly elevated
-- **Temperature**: 39.2 degrees Celsius - high fever suggesting infection
-- **Oxygen Saturation**: 88% - critically low, indicating hypoxemia
-- **White Blood Cell Count**: 18.5 - severe leukocytosis, likely sepsis
-- **Creatinine**: 2.8 - acute kidney injury
+- Heart Rate = 140 beats per min
+- Temp = 39.2 deg
+- Oxygen Sat = 88%
+- WBC count = 18.5
+- Creatinine = 2.8
